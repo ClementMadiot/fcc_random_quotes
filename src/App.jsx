@@ -38,9 +38,12 @@ function App() {
   const displayQuotes = (data) => {
     const text = document.getElementById("text");
     const authorQuote = document.getElementById("author");
+    const tweet = document.getElementById('tweet-quote')
     const { quote, author } = data[0];
     text.textContent = quote;
-    authorQuote.value = "- " + author;
+    authorQuote.textContent = "- " + author;
+    tweet.href = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="${quote}"${author}`
+
     changeColor(text, authorQuote);
   };
 
@@ -86,7 +89,7 @@ function App() {
               <a
                 id="tweet-quote"
                 target="_blank"
-                href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="
+                href=""
               >
                 <i className="fa-brands fa-twitter"></i>
               </a>
