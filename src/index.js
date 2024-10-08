@@ -1,5 +1,11 @@
 import "./style/App.scss";
 
+const body = document.querySelector("body");
+const text = document.getElementById("text");
+const authorQuote = document.getElementById("author");
+const spanQuote = document.getElementById("span-quote");
+const allBtn = document.querySelectorAll("button");
+// const newQuoteBtn = document.getElementById("new-quote");
 let colors = [
   "#16a085",
   "#27ae60",
@@ -15,8 +21,10 @@ let colors = [
   "#73A857",
 ];
 
+// newQuoteBtn.addEventListener('click', fetchQuotes);
+
 function App() {
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL
 
   const fetchQuotes = async () => {
     try {
@@ -36,20 +44,16 @@ function App() {
     }
   };
   const displayQuotes = (data) => {
-    const text = document.getElementById("text");
-    const authorQuote = document.getElementById("author");
     const { quote, author } = data[0];
-    text.textContent = quote;
+    console.log(quote)
+    // setTextQuotes(quote);
+    text.textContent = quote
     authorQuote.value = "- " + author;
-    changeColor(text, authorQuote);
+    changeColor();
   };
 
-  const changeColor = (text, authorQuote) => {
+  const changeColor = () => {
     const newColors = colors[Math.floor(Math.random() * colors.length)];
-
-    const body = document.querySelector("body");
-    const spanQuote = document.getElementById("span-quote");
-    const allBtn = document.querySelectorAll("button");
 
     const elements = [body, ...allBtn];
     elements.forEach((element) => {
@@ -79,7 +83,9 @@ function App() {
           <i id="span-quote" className="fa-solid fa-quote-left"></i>
           <span id="text"></span>
         </p>
-        <p id="author" className="author"></p>
+        <p id="author" className="author">
+          - Albert Brooks
+        </p>
         <div className="button-box">
           <div id="reseau">
             <button className="tweet">
